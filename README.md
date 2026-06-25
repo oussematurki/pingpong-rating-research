@@ -53,17 +53,29 @@ One month of Setka Cup matches including set scores and individual game points.
 
 ## Project Structure
 pingpong-rating-research/
+
 ├── notebooks/
+
 │   ├── 01_exploration.ipynb
+
 │   ├── 02_elo_standard.ipynb
+
 │   ├── 03_elo_set_based.ipynb
+
 │   ├── 04_elo_points_based.ipynb
+
 │   ├── 05_glicko2.ipynb
+
 │   └── 06_comparison.ipynb
+
 ├── src/
+
 │   └── utils.py
+
 ├── data/          ← not tracked by git
+
 ├── results/       ← saved prediction CSVs per algorithm
+
 └── README.md
 
 ---
