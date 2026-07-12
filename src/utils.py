@@ -9,15 +9,13 @@ def create_player_base(df):
             "player": player,
             "rating": 1500.0,
             "matches_played": 0,
-            "wins": 0,
-            "losses": 0,
         }
         for player in players
     ]
     return pd.DataFrame(rows)
 
 
-def update_rating(r_old_A, r_old_B, actual_winner, metric_type, match_data, K):
+def update_rating(r_old_A, r_old_B, actual_winner, metric_type, match_data, K_A, K_B=None):
     # Step 1: Expected Probability
     E_A = 1 / (1 + 10 ** ((r_old_B - r_old_A) / 400))
     E_B = 1 - E_A
@@ -44,9 +42,14 @@ def update_rating(r_old_A, r_old_B, actual_winner, metric_type, match_data, K):
     else:
         multiplier = 1.0  # Standard Elo baseline
 
+    # If K_B isn't passed, fall back to K_A for both (keeps old single-K
+    # behavior working: update_rating(..., K) still works via K_A=K)
+    if K_B is None:
+        K_B = K_A
+
     # Step 3: Apply changes
-    r_new_A = r_old_A + K * multiplier * (S_A - E_A)
-    r_new_B = r_old_B + K * multiplier * (S_B - E_B)
+    r_new_A = r_old_A + K_A * multiplier * (S_A - E_A)
+    r_new_B = r_old_B + K_B * multiplier * (S_B - E_B)
 
     return round(r_new_A, 2), round(r_new_B, 2), round(E_A, 4), round(E_B, 4)
 
