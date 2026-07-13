@@ -3,6 +3,24 @@
 Comparing ELO variants on real table tennis match data to determine the best
 predictive rating algorithm for a community-first ranked ping pong app.
 
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+![Notebook](https://img.shields.io/badge/notebooks-Jupyter-orange)
+
+---
+
+## Table of Contents
+
+- [Motivation](#motivation)
+- [Research Question](#research-question)
+- [Dataset](#dataset)
+- [Algorithms Tested](#algorithms-tested)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Project Structure](#project-structure)
+- [Status](#status)
+- [Findings](#findings)
+- [Related](#related)
+
 ---
 
 ## Motivation
@@ -36,10 +54,10 @@ One month of Setka Cup matches including set scores and individual game points.
 
 | Algorithm | Key Idea |
 |---|---|
-| Standard ELO | Baseline — win/loss only, K=32 |
+| Standard ELO | Baseline — win/loss only, fixed K=32 and variable K (K=64 new players, K=32 veterans) |
 | MOV ELO (Set-based) | Multiplier based on set differential |
 | MOV ELO (Points-based) | Multiplier based on total point differential |
-| Glicko-2 | Adds rating deviation and volatility |
+| Glicko-2 | Adds rating deviation and volatility; tested per-match periods and batched periods |
 
 ---
 
@@ -86,9 +104,9 @@ pingpong-rating-research/
 
 - [x] Project setup and data loading
 - [x] Standard ELO baseline
-- [ ] MOV ELO set-based
-- [ ] MOV ELO points-based
-- [ ] Glicko-2
+- [x] MOV ELO set-based
+- [x] MOV ELO points-based
+- [x] Glicko-2 (per-match and batched rating periods)
 - [ ] Comparison and findings
 
 ---
